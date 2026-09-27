@@ -2,7 +2,7 @@ cmake==4.4.3
 diskcache==5.6.3
 dnspython==2.8.0
 Jinja2==3.1.6
-llama_cpp_python==0.3.4
+llama_cpp_python==0.3.35
 MarkupSafe==3.0.3
 ninja==1.13.2
 numpy==2.5.3
