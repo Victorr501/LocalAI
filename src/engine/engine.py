@@ -12,7 +12,7 @@ class AIEngine:
         self.model = None
         self.load_model()
         
-    def load_mode(self):
+    def load_model(self):
         """Carga el modelo .gguf físico directamente en la VRAM de la GPU"""
         try:
             log.info(f"Cargando modelo de IA desde: {self.model_path}...")
