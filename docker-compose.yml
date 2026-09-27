@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: local_ai_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - D:\BasesDeDatos\LocalAI_Mongo:/data/db
+    restart: unless-stopped

@@ -1,17 +1,18 @@
 import os
 from dotenv import load_dotenv
+from src.config.logger import get_logger
+from src.database.database import Database
 
 load_dotenv()
-
-db_uri = os.getenv("MONGO_URI")
-db_name = os.getenv("MONGO_DB_NAME")
-model_path = os.getenv("MODEL_PATH")
+log = get_logger(__name__)
 
 def main():
     print("=== Iniciando LocalAI ===")
-    print(f"[*] Base de datos configurada en: {db_uri} (Nombre: {db_name})")
-    print(f"[*] Directorio de modelos establecido en: {model_path}")
-    print("[*] Sistema base inicializado. Todo listo para el siguiente paso.")
+    db = Database()
+    db.connect()
+    db.init_db()
+    
+    log.info("Sistema base inicializado. Todo listo para cargar el modelo.")
     
 if __name__ == "__main__":
     main()
