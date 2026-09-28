@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from src.config.logger import get_logger
-from src.database.database import Database
+from src.config.database import Database
 from src.engine.engine import AIEngine
 
 load_dotenv()
