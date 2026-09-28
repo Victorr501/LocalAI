@@ -8,7 +8,7 @@ load_dotenv()
 log = get_logger(__name__)
 
 def main():
-    log.info("=== Iniciando LocalAI ===")
+    log.info("==== Iniciando LocalAI ====")
     db = Database()
     db.connect()
     db.init_db()
