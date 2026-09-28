@@ -96,7 +96,7 @@ APP_MODE="console"
 
 ---
 
-## 💻 3. Guía de Uso y Ejecución
+## 3. Guía de Uso y Ejecución
 
 El orquestador principal (`main.py`) puede iniciarse de forma totalmente guiada mediante menús interactivos, o de forma desatendida mediante argumentos de terminal.
 
