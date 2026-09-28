@@ -1,6 +1,6 @@
-🌐 *Read this in [Spanish](README.es.md)*
+*Read this in [Spanish](README.es.md)*
 
-# LocalAI - Local Inference Engine 🧠
+# LocalAI - Local Inference Engine
 
 LocalAI is a 100% locally executed artificial intelligence application built on Clean Architecture principles. It separates the inference logic, the database, and the user interface, allowing the AI to be deployed both in the console (CLI) and on a server (API).
 
@@ -8,7 +8,7 @@ It features persistent memory thanks to its MongoDB integration and is optimized
 
 ---
 
-## 📋 1. Prerequisites (Hardware and Software)
+## 1. Prerequisites (Hardware and Software)
 
 To run this project using your graphics card, you need to prepare your operating system environment:
 
@@ -20,7 +20,7 @@ To run this project using your graphics card, you need to prepare your operating
 
 ---
 
-## 🚀 2. Installation and Configuration
+## 2. Installation and Configuration
 
 ### Step 1: Start the Database (MongoDB)
 
@@ -98,7 +98,7 @@ APP_MODE="console"
 
 ---
 
-## 💻 3. Usage and Execution Guide
+## 3. Usage and Execution Guide
 
 The main orchestrator (`main.py`) can be started either in a fully guided way through interactive menus, or in an unattended way using terminal arguments.
 
