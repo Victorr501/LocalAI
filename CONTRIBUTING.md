@@ -11,8 +11,8 @@ Currently, this project is a personal development and is in an active build phas
 For now, direct access to modify the repository is closed to maintain the *Clean Architecture* structure we are building. However, if you are looking at this project, have ideas for improvement, or would like to collaborate, **I would love to talk to you!**
 
 To get in touch with me or request access to the project:
-1. Email me directly at: **[your-email@email.com]**
-2. Connect with me on LinkedIn: **[Link to your profile]**
+1. Email me directly at: **[vrubinr501@gmail.com]**
+2. Connect with me on LinkedIn: **[Victor Rubin Rubió](https://www.linkedin.com/in/víctor-rubín-rubio-598279261)**
 3. Open an *Issue* in the GitHub tab introducing yourself and mentioning how you would like to collaborate.
 
 ## Important Project Links

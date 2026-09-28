@@ -11,8 +11,8 @@ Actualmente, este proyecto es un desarrollo personal y se encuentra en una fase 
 Por el momento, el acceso para modificar el repositorio directamente está cerrado para mantener la estructura de *Clean Architecture* que estamos construyendo. Sin embargo, si estás viendo este proyecto, tienes ideas de mejora o te gustaría colaborar, **¡me encantaría hablar contigo!**
 
 Para ponerte en contacto conmigo o pedir acceso al proyecto:
-1. Escríbeme directamente a mi correo: **[tu-correo@email.com]**
-2. Conecta conmigo en LinkedIn: **[Enlace a tu perfil]**
+1. Escríbeme directamente a mi correo: **[vrubinr501@gmail.com]**
+2. Conecta conmigo en LinkedIn: **[Victor Rubin Rubió](https://www.linkedin.com/in/víctor-rubín-rubio-598279261)**
 3. Abre un *Issue* en la pestaña de GitHub presentándote y comentando en qué te gustaría colaborar.
 
 ## Enlaces Importantes del Proyecto
