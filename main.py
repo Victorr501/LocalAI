@@ -32,10 +32,18 @@ def main():
     db.init_db()
     log.info("Conectado a MongoDB")
             
+    log.info(f"Arrancando el modelo {modelo_inteligencia_artificial}...")
+    ai = AIEngine()
+    log.info("Modelo arrancado adecuadamente")
     
-    #ai = AIEngine()
-    #resultado = ai.generate_response(input("Introduce el promt: "))
-    #log.info(resultado)
+    if modo_arranque == 1:
+        from src.console.cli import iniciar_terminal
+        log.info("Arrancando terminal...")
+        iniciar_terminal(ai, db)
+    elif modo_arranque == 2:
+        from src.server.api import iniciar_servidor
+        log.info("Arrancando servidor...")
+        iniciar_servidor(ai, db)
 
 """
 Metodos asistencia proyecto
