@@ -19,9 +19,9 @@ Para ponerte en contacto conmigo o pedir acceso al proyecto:
 
 El proyecto no solo vive en el código, sino que está planificado y documentado a través de varias herramientas. Si hablamos y te doy acceso, aquí es donde encontrarás el "cerebro" del proyecto:
 
-*   📝 **[Notion de LocalAI](https://app.notion.com/p/LocalAI-3e7542a8aec980bbad0d4d235320072)**: Aquí se encuentra la definición formal, los objetivos del proyecto y el registro del progreso diario.
-*   📐 **[Diagramas en Eraser.io](https://app.eraser.io/workspace/KC8oK5jUv52IgrcDV0Kd)**: Espacio de trabajo visual donde esquematizamos la arquitectura de capas, el flujo de datos y la conexión entre la terminal, el servidor y la base de datos MongoDB.
-*   📁 **[Google Drive (Documentación)](https://drive.google.com/drive/folders/1wMBbhCwC_DNoRkrUzuvjv3NVUwx8T-2?dmr=1&ec=wgc-drive-hero-goto)**: Carpeta central con documentos técnicos fundamentales como la "Hoja de ruta", los modelos de IA empleados y las "Versiones y librerias".
+*   **[Notion de LocalAI](https://app.notion.com/p/LocalAI-3e7542a8aec980bbad0d4d235320072)**: Aquí se encuentra la definición formal, los objetivos del proyecto y el registro del progreso diario.
+*   **[Diagramas en Eraser.io](https://app.eraser.io/workspace/KC8oK5jUv52IgrcDV0Kd)**: Espacio de trabajo visual donde esquematizamos la arquitectura de capas, el flujo de datos y la conexión entre la terminal, el servidor y la base de datos MongoDB.
+*   **[Google Drive (Documentación)](https://drive.google.com/drive/folders/1wMBbhCwC_DNoRkrUzuvjv3NVUwx8T-2?dmr=1&ec=wgc-drive-hero-goto)**: Carpeta central con documentos técnicos fundamentales como la "Hoja de ruta", los modelos de IA empleados y las "Versiones y librerias".
 
 *(Nota: Es posible que necesites solicitarme permiso de lectura al hacer clic en los enlaces de Notion o Drive).*
 

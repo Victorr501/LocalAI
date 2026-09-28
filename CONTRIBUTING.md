@@ -1,6 +1,6 @@
-🌐 *Read this in [Spanish](CONTRIBUTING.es.md)*
+*Read this in [Spanish](CONTRIBUTING.es.md)*
 
-# Contributing to LocalAI 🤝
+# Contributing to LocalAI
 
 Hi! Thanks for your interest in taking a look at the LocalAI code.
 
@@ -19,9 +19,9 @@ To get in touch with me or request access to the project:
 
 The project doesn't just live in the code; it is planned and documented across several tools. If we talk and I give you access, this is where you'll find the project's "brain":
 
-*   📝 **[LocalAI Notion](https://app.notion.com/p/LocalAI-3e7542a8aec980bbad0d4d235320072)**: Here you will find the formal definition, project goals, and daily progress log.
-*   📐 **[Eraser.io Diagrams](https://app.eraser.io/workspace/KC8oK5jUv52IgrcDV0Kd)**: Visual workspace where we outline the layered architecture, data flow, and the connection between the terminal, the server, and the MongoDB database.
-*   📁 **[Google Drive (Documentation)](https://drive.google.com/drive/folders/1wMBbhCwC_DNoRkrUzuvjv3NVUwx8T-2?dmr=1&ec=wgc-drive-hero-goto)**: Central folder with foundational technical documents such as the "Roadmap", the AI models used, and "Versions and libraries".
+*   **[LocalAI Notion](https://app.notion.com/p/LocalAI-3e7542a8aec980bbad0d4d235320072)**: Here you will find the formal definition, project goals, and daily progress log.
+*   **[Eraser.io Diagrams](https://app.eraser.io/workspace/KC8oK5jUv52IgrcDV0Kd)**: Visual workspace where we outline the layered architecture, data flow, and the connection between the terminal, the server, and the MongoDB database.
+*   **[Google Drive (Documentation)](https://drive.google.com/drive/folders/1wMBbhCwC_DNoRkrUzuvjv3NVUwx8T-2?dmr=1&ec=wgc-drive-hero-goto)**: Central folder with foundational technical documents such as the "Roadmap", the AI models used, and "Versions and libraries".
 
 *(Note: You may need to request read access from me when clicking the Notion or Drive links).*
 
