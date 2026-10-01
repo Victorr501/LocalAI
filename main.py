@@ -38,7 +38,7 @@ def main():
     
     if modo_arranque == 1:
         from src.console.cli import iniciar_terminal
-        log.info("Arrancando terminal...")
+        log.info("Delegando control a la TUI de Textual...")
         iniciar_terminal(ai, db)
     elif modo_arranque == 2:
         from src.server.api import iniciar_servidor

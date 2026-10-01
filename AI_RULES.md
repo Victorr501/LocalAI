@@ -18,6 +18,7 @@ LocalAI es un **agente inteligente autónomo y soberano**, diseñado para ejecut
 *   **Caché y Estructuras:** `diskcache==5.6.3`, `typing_extensions==4.16.0`
 *   **Plantillas (Futuro soporte web/prompts):** `Jinja2==3.1.6`, `MarkupSafe==3.0.3`
 *   **Red (Opcional/Soporte):** `dnspython==2.8.0
+*   **Interfaz de termianl:** `textual==8.2.8` 
 
 ## Mapa del Proyecto
 
