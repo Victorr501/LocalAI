@@ -1,4 +1,5 @@
-import uuid
+from src.console.pages.local_ai_app_css import LocalAIApp
 
 def iniciar_terminal(ai_engine, db):
-    pass
+    app = LocalAIApp()
+    app.run()
