@@ -31,7 +31,7 @@ Agente IA 100% local (llama.cpp + CUDA) con Clean Architecture. En desarrollo te
 ## Workflows de agentes (`.opencode/agents/`)
 
 - Subagentes SDD: `planner` → `implementer` → `reviewer` + `coordinator`. Specs en `specs/NNN-nombre/{spec,plan,tasks}.md`; reglas en `docs/constitution.md`.
-- Cada spec define su verificación en `plan.md` (tests en `src/tests/`, sin instalar dependencias). Solo el `coordinator` actualiza `MEMORY.md` (al cierre, o con `/actualizar_memory`).
+- Cada spec define su verificación en `plan.md` (tests en `src/tests/`, sin instalar dependencias). Cualquier sesión actualiza `MEMORY.md` cuando algo importante cambie; al cerrar una spec el obligado es el `coordinator` (y también con `specs/NNN-nombre/tasks.md`). Herramienta: `/actualizar_memory`.
 - Comandos: `/revisar_ambiguedades` (coherencia de los .md de esta estructura) y `/actualizar_memory`.
 
 ## Repo

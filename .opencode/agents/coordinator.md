@@ -5,6 +5,12 @@ permissions:
     - action: edit
       resource: "*"
       effect: deny
+    - action: edit
+      resource: "MEMORY.md"
+      effect: allow
+    - action: edit
+      resource: "specs/**"
+      effect: allow
     - action: shell
       resource: "*"
       effect: deny

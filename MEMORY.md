@@ -35,11 +35,11 @@ Proyecto en **fase temprana**: el esqueleto de arranque funciona (menús + motor
 - Con args válidos (`python main.py -a 1 -m X.gguf`) no hay menús; sin args o con valor inválido siempre pasa por `input()`. Para scripts/verificación no bloquea: pasar ambos args con el modelo existente.
 - Arranque mínimo probado: `docker-compose up -d` → `.env` válido → `.gguf` en `models/` → `python main.py`.
 - `load_dotenv()` se llama en varios módulos; `main.py` sobrescribe `MODEL_PATH` en `os.environ`. No usar `load_dotenv(override=True)`.
-- Staged/Working tree pendiente de commit: `AGENTS.md`, `MEMORY.md` y `main.py` (arreglo de args) modificados; renombrado `LICENSE` → `LICENSE.md` y borrado `README.es.md`; sin trackear: `.opencode/`, `docs/`, `opencode.json`.
+- Estado git: todo lo demás mergeado hasta el PR #11 (`d505fe0`); único cambio pendiente de commit: el borrado de `AI_RULES.md` (ya eliminado del disco).
 
 ## Cómo actualizar este archivo
 
 1. Al terminar una tarea relevante, mueve su punto de "Pendiente" a "Hecho" (con fecha si aporta contexto).
-2. Mantén las secciones: Estado general / Hecho / Pendiente / Gotchas.
+2. Mantén las secciones: Estado general / ✅ Hecho / ❌ Pendiente / ⚠️ Gotchas / Cómo actualizar.
 3. Borra lo que deje de ser cierto; este archivo solo es valioso si refleja el código real.
-4. Solo el `coordinator` actualiza este archivo al cerrar una spec (y entonces también `specs/NNN-nombre/tasks.md`); los demás agentes no lo tocan.
+4. Cualquier sesión actualiza este archivo cuando algo importante cambie; al cerrar una spec el obligado es el `coordinator` (y entonces también `specs/NNN-nombre/tasks.md`). Herramienta: `/actualizar_memory`.

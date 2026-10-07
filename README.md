@@ -12,7 +12,7 @@ It features persistent memory thanks to its MongoDB integration and is optimized
 
 To run this project using your graphics card, you need to prepare your operating system environment:
 
-1. **Python 3.10 or higher** installed on the system.
+1. **Python 3.12 or higher** installed on the system.
 2. **Docker Desktop** (to run the MongoDB database).
 3. **C++ Compiler**: Install the *Visual Studio Build Tools* (or Visual Studio Community) and make sure to select the "Desktop development with C++" workload.
 4. **NVIDIA CUDA Toolkit**: Download and install the NVIDIA CUDA toolkit (e.g. v13.4).
@@ -152,7 +152,7 @@ Cuenta con memoria permanente gracias a la integración con MongoDB y está opti
 
 Para ejecutar este proyecto aprovechando la tarjeta gráfica, necesitas preparar el entorno de tu sistema operativo:
 
-1. **Python 3.10 o superior** instalado en el sistema.
+1. **Python 3.12 o superior** instalado en el sistema.
 2. **Docker Desktop** (para levantar la base de datos MongoDB).
 3. **Compilador C++**: Instala las *Visual Studio Build Tools* (o Visual Studio Community) y asegúrate de marcar la carga de trabajo "Desarrollo para el escritorio con C++".
 4. **NVIDIA CUDA Toolkit**: Descarga e instala el kit de herramientas CUDA de NVIDIA (ej. v13.4).
