@@ -49,7 +49,11 @@ def main():
 Metodos asistencia proyecto
 """
 def menu_modo_arranque(arg_modo) -> int:
-    modo = arg_modo
+    """Devuelve el modo (1=CLI, 2=servidor). Si -a no es 1 ni 2, pregunta por consola."""
+    if arg_modo in ("1", "2"):
+        os.environ["APP_MODE"] = "console" if arg_modo == "1" else "server"
+        return int(arg_modo)
+
     while True:
         print("\nSelecciona el modo de ejecución:")
         print("1. Modo Terminal (Chat CLI local)")
