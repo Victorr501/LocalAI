@@ -1,48 +1,44 @@
-# AI_RULES - Arquitectura y Reglas del Proyecto LocalAI
+# AGENTS.md — LocalAI
 
-Este documento define la estructura del proyecto bajo los principios de **Clean Architecture**[cite: 21]. Cualquier agente de IA (OpenCode, Claude, Cursor) o desarrollador que interactúe con este repositorio debe respetar estrictamente la siguiente separación de responsabilidades para mantener el código escalable y modular.
+Agente IA 100% local (llama.cpp + CUDA) con Clean Architecture. En desarrollo temprano: verifica el código antes de confiar en README/docs.
 
-## Propósito de la Aplicación
+## Comandos
 
-LocalAI es un **agente inteligente autónomo y soberano**, diseñado para ejecutarse 100% en local (Edge AI)[cite: 21]. Su objetivo es proporcionar un asistente de IA privado, de baja latencia y sin costes de API, aprovechando la aceleración por hardware (NVIDIA GPU)[cite: 21]. El proyecto evolucionará desde un chat de terminal reactivo hacia un agente autónomo con memoria a largo plazo (vía MongoDB) y capacidades de *Function Calling* para interactuar con el sistema operativo y nubes privadas[cite: 21].
+- Usa el Python del venv (`.\venv\Scripts\python.exe` o venv activado): el `python` del sistema no tiene las dependencias.
+- Arranque: `python main.py` (menús interactivos) o `python main.py -a 1|2 -m <modelo.gguf>` (con args válidos no pregunta por consola).
+- `-a` solo acepta `1` (CLI) o `2` (servidor); valor ausente o inválido → menú interactivo. `-m` solo se salta su menú si el `.gguf` existe en `models/`.
+- Requisitos para arrancar: `docker-compose up -d` (MongoDB), `.env` válido (ver `.example.env`: `MONGO_URI`, `MONGO_DB_NAME`, `MODEL_PATH`, `APP_MODE`) y al menos un `.gguf` en `models/` (si no, `sys.exit(1)`).
+- No hay ningún runner de tests, linter, typecheck ni CI. La librería de tests está **por decidir** (constitución, principio 5): no instales ninguna ni inventes comandos de verificación; la estrategia la define el plan de cada spec.
+- `pip install -r requirements.txt` reinstala `llama_cpp_python` **sin GPU**. Tras cada instalación, recompilar en PowerShell:
+  `$env:CMAKE_ARGS="-DGGML_CUDA=on"; pip install --force-reinstall --no-cache-dir llama-cpp-python` (5-15 min).
 
-## Stack Tecnológico Principal
+## Arquitectura (reglas estrictas)
 
-*   **Lenguaje:** Python 3.12 (o superior)[cite: 21]
-*   **Inferencia AI:** `llama-cpp-python==0.3.35` (compilado con soporte CUDA `-DGGML_CUDA=on` para NVIDIA VRAM)
-*   **Modelos:** Archivos `.gguf` (ej. Llama 3, Mistral cuantizados)[cite: 21]
-*   **Base de Datos (Memoria):** MongoDB (Driver: `pymongo==4.18.2`)[cite: 21]
-*   **API / Servidor:** `FastAPI` (Mantenido para el futuro desarrollo web)
-*   **Gestión de Entorno:** `python-dotenv==1.2.3`[cite: 21]
-*   **Compilación y Rendimiento:** `cmake==4.4.3`, `ninja==1.13.2`, `numpy==2.5.3`
-*   **Caché y Estructuras:** `diskcache==5.6.3`, `typing_extensions==4.16.0`
-*   **Plantillas (Futuro soporte web/prompts):** `Jinja2==3.1.6`, `MarkupSafe==3.0.3`
-*   **Red (Opcional/Soporte):** `dnspython==2.8.0
+- `main.py` es el único orquestador: carga `.env`, conecta BD, instancia `AIEngine` y lo inyecta en la interfaz. No duplicar esa carga.
+- Dirección de dependencias: `console`/`server` → `services` → `repository`/`engine`.
+- `commands/` (CLI) y `controllers/` (server) son la capa controladora: capturan excepciones y controlan lo que entra y sale del flujo; nunca contienen lógica de negocio.
+- `services` (lógica) y `repository` (datos) se comunican mediante contratos `abc.ABC`; las capas superiores dependen de abstracciones, no de implementaciones.
+- Conexión a MongoDB en `src/config/database.py`; `repository` es el único que lee o escribe datos. `pymongo` solo en esas dos capas.
+- Todo modelo de datos (DTOs, entidades, esquemas) vive en `src/models/`, separando request/response de schemas de BD.
 
-## Mapa del Proyecto
+## Estado real del código (no todo lo que dice el README existe)
 
-La estructura principal se divide de la siguiente manera basándose en el árbol del directorio[cite: 20]:
+- Stub vacíos: `src/console/cli.py`, `src/server/api.py` (solo `pass`). `src/repository/`, `src/services/`, `src/models/`, `src/tests/` contienen solo `__init__.py`.
+- FastAPI/uvicorn **no** están en `requirements.txt`; el "modo servidor" aún no usa red.
+- `src/engine/engine.py` hardcodea el template de chat Llama-3 (`<|start_header_id|>...`). Cambiar si se usa otro modelo.
+- `load_dotenv()` se llama en varios módulos; `main.py` sobrescribe `MODEL_PATH` en `os.environ` (no usar `load_dotenv(override=True)`).
 
-*   **`models/` (Raíz):** Directorio exclusivo para almacenar los archivos binarios pesados de los modelos de IA (formato `.gguf`).
-*   **`main.py`:** Orquestador principal. Su única responsabilidad es arrancar la base de datos, cargar el modelo en la VRAM y delegar el control a la interfaz seleccionada (Terminal o Servidor)[cite: 21].
+## Workflows de agentes (`.opencode/agents/`)
 
-### Capas Internas (`src/`)
-Todo el código lógico reside dentro de `src/`[cite: 20], dividido en capas estrictas:
+- Subagentes SDD: `planner` → `implementer` → `reviewer` + `coordinator`. Specs en `specs/NNN-nombre/{spec,plan,tasks}.md`; reglas en `docs/constitution.md`.
+- Cada spec define su verificación en `plan.md` (tests en `src/tests/`, sin instalar dependencias). Solo el `coordinator` actualiza `MEMORY.md` (al cierre, o con `/actualizar_memory`).
+- Comandos: `/revisar_ambiguedades` (coherencia de los .md de esta estructura) y `/actualizar_memory`.
 
-*   **`src/config/`**: Configuración global del sistema. Contiene la inicialización del *logger* y la lectura de variables de entorno (del archivo `.env`)[cite: 20, 21].
-*   **`src/engine/`**: Cerebro del sistema. Contiene la lógica de inferencia, la optimización de hardware (NVIDIA CUDA / VRAM) mediante `llama-cpp-python` y la gestión interna del Agente[cite: 21]. No debe contener lógica de base de datos ni de interfaces.
-*   **`src/repository/`**: Capa de persistencia. Único lugar autorizado para ejecutar consultas directas y gestionar la conexión con MongoDB (historiales, sesiones, etc.)[cite: 20, 21].
-*   **`src/services/`**: Lógica de negocio (Puente). Consume el `repository` y el `engine` para crear flujos de trabajo (ej. guardar un mensaje, generar respuesta, guardar respuesta)[cite: 20, 21]. **Esta capa es agnóstica a la interfaz y se comparte entre el CLI y la API**[cite: 21].
-*   **`src/models/`**: Definición de esquemas de datos, entidades y modelos de dominio (por ejemplo, clases de Pydantic o estructuras de datos internas)[cite: 20].
-*   **`src/console/`**: Interfaz de línea de comandos (CLI). Contiene la lógica visual de la terminal (`cli.py`) y sus comandos (`commands/`)[cite: 20, 21]. Consume los métodos de `src/services/`.
-*   **`src/server/`**: Interfaz web/API (FastAPI). Contiene el archivo de arranque (`api.py`) y los controladores (`controllers/`) que exponen el motor a la red[cite: 20, 21]. Consume los métodos de `src/services/`.
-*   **`src/tests/`**: Directorio dedicado a las pruebas unitarias y de integración del código[cite: 20].
+## Repo
 
-## Reglas Estrictas de Desarrollo (Inyección de Dependencias)
+- `venv/`, `.env`, `models/*` (salvo `models/README.md`) están en `.gitignore`: nunca commitear.
+- Código y comentarios en español; docs `README.md`/`CONTRIBUTING.md` bilingües (secciones EN + ES, mantener ambas).
 
-1.  **Cero lógica de negocio en los controladores:** Los archivos dentro de `src/console/` y `src/server/` solo manejan entradas y salidas (imprimir en pantalla o devolver JSONs). Toda la lógica compleja vive en `src/services/`.
-2.  **Unidireccionalidad:** Las interfaces (`console`, `server`) pueden llamar a `services`, pero los servicios **nunca** deben llamar a las interfaces.
-3.  **Aislamiento de la Base de Datos:** Está estrictamente prohibido importar librerías de MongoDB en `console`, `server` o `engine`. Cualquier acceso a datos debe pasar por `repository`.
-4.  **Orquestación centralizada:** La instanciación pesada (arrancar la IA y la BD) se hace una sola vez en `main.py` y se inyecta en las capas inferiores para evitar colapsos de memoria[cite: 21].
-5. **Uso de Interfaces (Abstracción Obligatoria):** Las capas de `services` y `repository` deben definir y utilizar interfaces (clases abstractas mediante `abc.ABC` en Python). Las capas superiores deben depender de estas abstracciones (los "contratos") y nunca de las implementaciones concretas, garantizando un acoplamiento débil.
-6.  **Estructuración Estricta de Modelos de Datos (`src/models/`):** Cualquier objeto, esquema, entidad de datos (ej. clases Pydantic, estructuras para JSON) o modelo de dominio **DEBE** crearse exclusivamente dentro de la carpeta `src/models/`. Además, estos modelos deben subdividirse lógicamente (en archivos o subcarpetas) según su propósito, por ejemplo, separando explícitamente los modelos de entrada/salida (DTOs, Request/Response) de los modelos de referencia de base de datos (Entidades/Schemas de MongoDB).s
+## Memory
+
+- En el archivo `MEMORY.md` se guardara todo el progreso del proyecto para que lo puedas leer y poder actualizar cuando hayas hecho algun punto importante nuevo
